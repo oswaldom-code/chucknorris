@@ -1,0 +1,25 @@
+# requiere: https://taskfile.dev/#/installation
+version: "3"
+
+vars:
+  PROJECT_PATH: '{{.PWD}}'
+  # ENV: prod or dev
+  ENV: dev
+
+dotenv: ['{{.PROJECT_PATH}}/config/ENV/{{.ENV}}/.env']
+
+tasks:
+    build:
+        desc: Build app
+        cmds:
+            - GOFLAGS=-mod=mod go build -o bin/{{.APP_NAME}} main.go 
+
+    run:
+        desc: Run  app
+        cmds:
+            - GOFLAGS=-mod=mod go run main.go server
+
+    swagger.doc:
+        desc: Swagger documentation
+        cmds:
+            - docker run -i yousan/swagger-yaml-to-html < api/swagger.yml > doc/api.html

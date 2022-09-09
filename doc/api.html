@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Swagger UI</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.43.0/swagger-ui.css" >
+  <style>
+    html
+    {
+      box-sizing: border-box;
+      overflow: -moz-scrollbars-vertical;
+      overflow-y: scroll;
+    }
+    *,
+    *:before,
+    *:after
+    {
+      box-sizing: inherit;
+    }
+    body {
+      margin:0;
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+<div id="swagger-ui"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.43.0/swagger-ui-bundle.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.43.0/swagger-ui-standalone-preset.js"> </script>
+<script>
+window.onload = function() {
+  var spec = {"openapi": "3.0.3", "info": {"title": "Chuck Norris API", "description": "Service for consuming Chuck Norris API", "contact": {"name": "API Support", "url": "http://www.domain.com/support", "email": "support@domain.com"}, "version": "1.0.0"}, "servers": [{"url": "https://{domain}:{port}/api/{version}", "description": "Production server", "variables": {"domain": {"default": "localhost"}, "port": {"default": "9000"}, "version": {"default": "v1.0"}}}], "tags": [{"name": "Chuck Norris", "description": "Chuck Norris API"}, {"name": "Sistema", "description": "Operaciones del sistema"}], "paths": {"/ping": {"get": {"tags": ["Sistema"], "operationId": "ping", "summary": "Verificar que el servio atienda peticiones", "description": "Verificar que el servicio se encuentre en linea", "responses": {"200": {"description": "Petici\u00f3n exitosa", "content": {"application/json": {"schema": {"type": "object", "properties": {"mensaje": {"type": "string", "description": "Mensaje de respuesta"}, "status": {"type": "string", "description": "Estado de la respuesta"}}, "example": {"status": "success", "mensaje": "pong"}}}}}, "500": {"description": "Error interno del servidor", "content": {"application/json": {"schema": {"type": "object", "properties": {"mensaje": {"type": "string", "description": "Mensaje de respuesta"}, "status": {"type": "string", "description": "Estado de la respuesta"}}, "example": {"status": "error", "mensaje": "Internal server error"}}}}}}}}, "/call": {"get": {"tags": ["Chuck Norris"], "operationId": "call", "summary": "Obtener una frase aleatoria de Chuck Norris", "description": "Obtener una frase aleatoria de Chuck Norris", "responses": {"200": {"description": "Petici\u00f3n exitosa", "content": {"application/json": {"schema": {"type": "object", "properties": {"mensaje": {"type": "string", "description": "Mensaje de respuesta"}, "status": {"type": "string", "description": "Estado de la respuesta"}, "data": {"type": "array", "properties": {"categories": {"type": "array", "description": "Categor\u00edas de la frase"}, "created_at": {"type": "string", "description": "Fecha de creaci\u00f3n de la frase"}, "icon_url": {"type": "string", "description": "URL de la imagen de Chuck Norris"}, "id": {"type": "string", "description": "ID de la frase"}, "updated_at": {"type": "string", "description": "Fecha de actualizaci\u00f3n de la frase"}, "url": {"type": "string", "description": "URL de la frase"}, "value": {"type": "string", "description": "Frase"}}}}, "example": {"status": "success", "mensaje": "Total object count: 1", "data": [{"categories": [], "created_at": "2020-01-05 13:42:19.34138", "icon_url": "https://assets.chucknorris.host/img/avatar/chuck-norris.png", "id": "5e11f8f3e9a5f0a6b5b0b5f9", "updated_at": "2020-01-05 13:42:19.34138", "url": "https://api.chucknorris.io/jokes/5e11f8f3e9a5f0a6b5b0b5f9", "value": "Chuck Norris can kill two stones with one bird."}]}}}}}, "500": {"description": "Error interno del servidor", "content": {"application/json": {"schema": {"type": "object", "properties": {"mensaje": {"type": "string", "description": "Mensaje de respuesta"}, "status": {"type": "string", "description": "Estado de la respuesta"}}, "example": {"status": "error", "mensaje": "Internal server error"}}}}}}}}}};
+  // Build a system
+  const ui = SwaggerUIBundle({
+    spec: spec,
+    dom_id: '#swagger-ui',
+    deepLinking: true,
+    presets: [
+      SwaggerUIBundle.presets.apis,
+      SwaggerUIStandalonePreset
+    ],
+    plugins: [
+      SwaggerUIBundle.plugins.DownloadUrl
+    ],
+    layout: "StandaloneLayout"
+  })
+  window.ui = ui
+}
+</script>
+</body>
+</html>

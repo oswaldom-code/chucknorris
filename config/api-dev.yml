@@ -1,0 +1,36 @@
+environment: dev
+app:
+  name: chucknorris
+  version: 1.0.0
+  description: API
+server:
+  host: localhost
+  port: 9000
+  scheme: http
+  mode: debug
+storage:
+  db:
+    user: postgres
+    password: supersecret
+    host: localhost
+    port: 54032
+    database: db
+    max_connections: 6
+    sslmode: disable
+  s3:
+    bucket: skaypet
+    access_key: aws-access-key-id
+    secret_access_key: aws-secret-access-key
+    region: us-east-1
+    endpoint: http://localhost:9000
+logging:
+  level: DEBUG
+  errorLogFile: error.log
+auth:
+  secret: JWT_SECRET
+email:
+  user: skaypet@gmail.com
+  password: SET_YOUR_PASSWORD
+  port: 587
+  smtp_server: smtp.gmail.com
+  host: http://localhost:3000

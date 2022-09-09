@@ -1,0 +1,36 @@
+environment: dev
+app:
+  name: chucknorris
+  version: 1.0.0
+  description: API
+server:
+  host: localhost
+  port: 9000
+  scheme: http
+  mode: debug
+storage:
+  db:
+    user:
+    password:
+    host:
+    port:
+    database:
+    max_connections:
+    sslmode:
+  s3:
+    bucket:
+    access_key:
+    secret_access_key:
+    region:
+    endpoint:
+logging:
+  level: DEBUG
+  errorLogFile: error.log
+auth:
+  secret: JWT_SECRET
+email:
+  user: 
+  password:
+  port:
+  smtp_server:
+  host:
